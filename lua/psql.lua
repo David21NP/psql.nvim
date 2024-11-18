@@ -1,3 +1,5 @@
+-- TODO: Open pspg pager to show results
+
 local function is_sql_file(buf_name)
 	return string.match(buf_name, ".sql$") ~= nil
 end
@@ -77,7 +79,7 @@ local function psql_run_file(sql_file)
 	vim.api.nvim_command("write")
 
 	local run_string = string.format(
-		"psql service=%s -c \"%s\" &> %s",
+		"psql service=%s -f %s &> %s",
 		connection_name,
 		sql_file,
 		output_file
